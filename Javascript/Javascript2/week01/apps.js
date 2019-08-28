@@ -27,19 +27,17 @@ function generateBookList() {
 generateBookList();
 */
 
-function generateBookList() {
-  let bookList = document.createElement('div');
-  let ul = document.createElement('ul');
+(function generateBookList() {
+  let bookListDev = document.createElement('div');
+  let ulElement = document.createElement('ul');
   bookTitles.map(book => {
-    let li = document.createElement('li');
+    let liElement = document.createElement('li');
     let bookNames = book.replace(/_/g, ' ');
-    li.appendChild(document.createTextNode(bookNames));
-    ul.appendChild(li);
-    return document.body.appendChild(bookList.appendChild(ul));
+    liElement.appendChild(document.createTextNode(bookNames));
+    ulElement.appendChild(liElement);
+    return document.body.appendChild(bookListDev.appendChild(ulElement));
   });
-}
-
-generateBookList();
+})();
 
 // 1.4 objects containing information for each book -------------
 const bookList = {
@@ -117,4 +115,30 @@ const bookList = {
 
 console.log(bookList);
 // 1.5 functions add information of books ----------------
-//console.log(Object.keys(bookList.game_of_thrones));
+
+function booksDetails() {
+  let ul = document.createElement('ul');
+
+  for (let book in bookList) {
+    let li = document.createElement('li');
+    let img = document.createElement('IMG');
+    let p = document.createElement('p');
+    img.src = bookList[book]['img'];
+
+    li.appendChild(img);
+    p.innerHTML =
+      'Title: ' +
+      bookList[book]['book_title'] +
+      '</br>' +
+      'Author: ' +
+      bookList[book]['author'] +
+      '</br>' +
+      'Language: ' +
+      bookList[book]['language'];
+
+    li.appendChild(p);
+    ul.appendChild(li);
+  }
+  document.body.appendChild(ul);
+}
+booksDetails();
