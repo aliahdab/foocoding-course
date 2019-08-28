@@ -30,8 +30,12 @@ generateBookList();
 (function generateBookList() {
   let bookListDev = document.createElement('div');
   let ulElement = document.createElement('ul');
+  let h1Element = document.createElement('h1');
+  h1Element.append(document.createTextNode("My personal favorite books"));
+  document.body.appendChild(h1Element);
   bookTitles.map(book => {
     let liElement = document.createElement('li');
+    //document.querySelector(+id).appendChild(liElement);
     let bookNames = book.replace(/_/g, ' ');
     liElement.appendChild(document.createTextNode(bookNames));
     ulElement.appendChild(liElement);
