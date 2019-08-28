@@ -1,0 +1,12 @@
+#grid-float .grid-item {
+float: left;
+width: 30%;
+margin: 0 10px;
+}
+
+#grid-float .grid-item:nth-child(3-4n),
+#grid-float .grid-item:nth-child(3+5n),
+#grid-float .grid-item:nth-child(3-4n)
+{
+
+}

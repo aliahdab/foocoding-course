@@ -1,0 +1,55 @@
+Admin:
+
+
+git init animals
+
+git remote add origin https://github.com/aliahdab/animals.git
+
+git pull origin master
+
+ls -a
+
+cat zoo.txt
+
+notepad++ zoo.txt 
+
+git add --all
+
+git commit -m "Add an animal to zoo.txt  "
+
+git push
+
+
+User:
+ 
+mkdir animal_repo
+ 
+cd animal_repo/
+ 
+git clone git@github.com:Eid-Dauod/animals.git
+  
+cd animals/
+
+git branch user_dev
+
+git branch -a
+
+git checkout user_dev
+
+touch pets.txt
+
+echo "cat" >>pets.txt
+
+echo "dog" >>pets.txt
+
+echo "rabbit" >>pets.txt
+
+cat pets.txt
+
+git status
+
+git add pets.txt
+
+git commit -m "create user-dev branch and pets.txt file and add animals"
+
+git push --set-upstream origin user_dev
