@@ -15,13 +15,13 @@ const bookTitles = [
 console.log(bookTitles);
 
 // 1.3 adding Ul with li inside ----------------------------------
-
+/*
 (function generateBookList() {
   let bookListDev = document.createElement('div');
   let ulElement = document.createElement('ul');
-  let h1Element = document.createElement('h1');
-  h1Element.append(document.createTextNode("My personal favorite books"));
-  document.body.appendChild(h1Element);
+  //let h1Element = document.createElement('h1');
+  //h1Element.append(document.createTextNode("My personal favorite books are"));
+  // document.body.appendChild(h1Element);
   bookTitles.map(book => {
     let liElement = document.createElement('li');
     //document.querySelector(+id).appendChild(liElement);
@@ -31,6 +31,7 @@ console.log(bookTitles);
     return document.body.appendChild(bookListDev.appendChild(ulElement));
   });
 })();
+*/
 
 // 1.4 objects containing information for each book -------------
 const bookList = {
@@ -121,8 +122,7 @@ const bookList = {
     img.src = bookList[book]['img'];
     li.appendChild(img);
     li.appendChild(newLi);
-    let p = '/';
-
+    let p = ' / / ';
     newLi.append(document.createTextNode(bookList[book]['title']));
     newLi.append(document.createTextNode(p));
     newLi.append(document.createTextNode(bookList[book]['author']));

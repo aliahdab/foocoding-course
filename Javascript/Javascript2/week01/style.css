@@ -5,10 +5,10 @@ body {
 }
 
 h1 {
-  padding: 1em;
-  font-size: 2em;
-  border-bottom: 20px solid;
-  width: 710px;
+  font-family: arial;
+  font-size: 2.6em;
+  padding-left: 1.4em;
+  width: 700px;
 }
 
 li {
@@ -24,7 +24,9 @@ li {
 
 li>li {
   display: inline;
-  font-size: 24px;
+  font-family: arial;
+  font-style: bold;
+  font-size: 1.1em;
   margin: auto 6em auto auto;
   padding: 1em;
 
