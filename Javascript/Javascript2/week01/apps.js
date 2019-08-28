@@ -15,17 +15,6 @@ const bookTitles = [
 console.log(bookTitles);
 
 // 1.3 adding Ul with li inside ----------------------------------
-/*
-function generateBookList() {
-  let newList = document.createElement('ul');
-  for (let i = 0; i < bookTitles.length; i++) {
-    let book = bookTitles[i];
-    newList.innerHTML += `<li>${book}</li>`;
-  }
-  return newList;
-}
-generateBookList();
-*/
 
 (function generateBookList() {
   let bookListDev = document.createElement('div');
@@ -45,6 +34,7 @@ generateBookList();
 
 // 1.4 objects containing information for each book -------------
 const bookList = {
+
   game_of_thrones: {
     title: 'Game Of Thrones',
     lang: 'English',
@@ -117,32 +107,28 @@ const bookList = {
   },
 };
 
-console.log(bookList);
+//console.log(bookList);
 // 1.5 functions add information of books ----------------
 
-function booksDetails() {
+
+(function booksDetails() {
   let ul = document.createElement('ul');
 
   for (let book in bookList) {
     let li = document.createElement('li');
     let img = document.createElement('IMG');
-    let p = document.createElement('p');
+    let newLi = document.createElement('li');
     img.src = bookList[book]['img'];
-
     li.appendChild(img);
-    p.innerHTML =
-      'Title: ' +
-      bookList[book]['book_title'] +
-      '</br>' +
-      'Author: ' +
-      bookList[book]['author'] +
-      '</br>' +
-      'Language: ' +
-      bookList[book]['language'];
+    li.appendChild(newLi);
+    let p = '/';
 
-    li.appendChild(p);
+    newLi.append(document.createTextNode(bookList[book]['title']));
+    newLi.append(document.createTextNode(p));
+    newLi.append(document.createTextNode(bookList[book]['author']));
+    newLi.append(document.createTextNode(p));
+    newLi.append(document.createTextNode(bookList[book]['Publication_date']));
     ul.appendChild(li);
   }
   document.body.appendChild(ul);
-}
-booksDetails();
+})();
