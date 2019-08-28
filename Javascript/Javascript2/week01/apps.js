@@ -24,7 +24,7 @@ function generateBookList() {
   }
   return newList;
 }
-document.body.append(generateBookList());
+//document.body.append(generateBookList());
 
 // 1.4 objects containing information for each book -------------
 const bookList = {
