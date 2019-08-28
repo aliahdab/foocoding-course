@@ -15,7 +15,7 @@ const bookTitles = [
 console.log(bookTitles);
 
 // 1.3 adding Ul with li inside ----------------------------------
-
+/*
 function generateBookList() {
   let newList = document.createElement('ul');
   for (let i = 0; i < bookTitles.length; i++) {
@@ -24,7 +24,22 @@ function generateBookList() {
   }
   return newList;
 }
-//document.body.append(generateBookList());
+generateBookList();
+*/
+
+function generateBookList() {
+  let bookList = document.createElement('div');
+  let ul = document.createElement('ul');
+  bookTitles.map(book => {
+    let li = document.createElement('li');
+    let bookNames = book.replace(/_/g, ' ');
+    li.appendChild(document.createTextNode(bookNames));
+    ul.appendChild(li);
+    return document.body.appendChild(bookList.appendChild(ul));
+  });
+}
+
+generateBookList();
 
 // 1.4 objects containing information for each book -------------
 const bookList = {
@@ -100,5 +115,6 @@ const bookList = {
   },
 };
 
+console.log(bookList);
 // 1.5 functions add information of books ----------------
-console.log(Object.keys(bookList.game_of_thrones));
+//console.log(Object.keys(bookList.game_of_thrones));
