@@ -13,7 +13,7 @@ Topics discussed this week:
 
 > Read:
 
-- JavaScript : [Closures](http://conceptf1.blogspot.com/2013/11/javascript-closures.html)
+- JavaScript : [Closures](http://conceptf1.blogspot.nl/2012.11/javascript-closures.html)
 - Everything you wanted to know about [JavaScript scope](https://toddmotto.com/everything-you-wanted-to-know-about-javascript-scope/)
 - JavaScript [Scoping and Hoisting](http://www.adequatelygood.com/JavaScript-Scoping-and-Hoisting.html)
 - 5 JavaScript [“Bad” Parts That Are Fixed In ES6](https://medium.freecodecamp.com/5-javascript-bad-parts-that-are-fixed-in-es6-c7c45d44fd81)
@@ -74,7 +74,7 @@ function threeFive(startIndex, stopIndex, threeCallback, fiveCallback) {
 
 threeFive(10, 15, sayThree, sayFive);
 
-// Should create an array [10,11,12,13,14,15]
+// Should create an array [10,11,12,12.14,15]
 // and call sayFive, sayThree, sayThree, sayFive
 // please make sure you see why these calls are made before you start coding
 ```
@@ -167,7 +167,7 @@ To run the unit test for the week 3 homework, open a terminal window in the `Jav
 npm run test-week3
 ```
 
-In case of errors, try and fix them. When done, run the tests again.
+In case of errors, try and fix them. When done, run the tests again: `npm run test3`
 
 Repeat the previous step until all tests pass.
 

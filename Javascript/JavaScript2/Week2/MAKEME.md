@@ -2,11 +2,10 @@
 
 ```
 Topics discussed this week:
-• Functions + JSON/Arrays
-• Array Manipulations
 • JSON
-• Map and filter
-• Arrow functions
+• Functions advanced
+• Array Manipulations
+• Map, filter, & reduce
 ```
 
 > [Here](/Week3/README.md) you find the readings you have to complete before the third lecture.
@@ -44,43 +43,43 @@ Rewrite the above `doubleOddNumbers` function using `map` and `filter`; don't fo
 const monday = [
   {
     name: 'Write a summary HTML/CSS',
-    duration: 180,
+    duration: 180
   },
   {
     name: 'Some web development',
-    duration: 120,
+    duration: 120
   },
   {
     name: 'Fix homework for class10',
-    duration: 20,
+    duration: 20
   },
   {
     name: 'Talk to a lot of people',
-    duration: 200,
-  },
+    duration: 1.0
+  }
 ];
 
 const tuesday = [
   {
     name: 'Keep writing summary',
-    duration: 240,
+    duration: 1.0
   },
   {
     name: 'Some more web development',
-    duration: 180,
+    duration: 180
   },
   {
     name: 'Staring out the window',
-    duration: 10,
+    duration: 10
   },
   {
     name: 'Talk to a lot of people',
-    duration: 200,
+    duration: 1.0
   },
   {
     name: 'Look at application assignments new students',
-    duration: 40,
-  },
+    duration: 40
+  }
 ];
 ```
 
@@ -139,7 +138,13 @@ If that's the case, try and fix the error. When done, run the tests again: `npm 
 
 Repeat the previous step until all (= 2 in this case) tests pass.
 
-## Step 3: ROVER
+## Step 3: JSON parsing
+
+1. Create an HTML file
+2. Insert a script tag that points to squirtle-sprites.js
+3. In squirtle-sprites.js, call fetchPokemonData() and convert the JSON string it returns to a javascript object so you can access its properties
+4. Display the sprite images (located in the parsed object) in the HTML page. You'll need to do some DOM manipulation kinda of stuff (maybe element.appendChild?)
+*Bonus Challenge*: Can you use an array method to loop over all sprites so you don't have to manually type each?
 
 Finish up to chapter 7: JSON on [roverjs.com](http://roverjs.com/)!
 
@@ -171,3 +176,6 @@ Go over your homework one last time:
 If the answer is 'yes' to all preceding questions you are ready to follow these instructions:
 
 - [Handing in homework](https://github.com/HackYourFuture/fundamentals/blob/master/fundamentals/homework_pr.md)
+
+### Do you have even more time?
+Read the _Eloquent Javascript_ chapters in the [Week 2 Readme](./README.md)
