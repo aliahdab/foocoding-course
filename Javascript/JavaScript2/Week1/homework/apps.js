@@ -12,16 +12,14 @@ const bookTitles = [
   'the_return_of_the_king',
   'the_silmarillion',
 ];
-console.log(bookTitles);
 
 // 1.3 adding Ul with li inside ----------------------------------
+// eslint-disable-next-line no-console
+console.log(bookTitles);
 /*
 (function generateBookList() {
   let bookListDev = document.createElement('div');
   let ulElement = document.createElement('ul');
-  //let h1Element = document.createElement('h1');
-  //h1Element.append(document.createTextNode("My personal favorite books are"));
-  // document.body.appendChild(h1Element);
   bookTitles.map(book => {
     let liElement = document.createElement('li');
     //document.querySelector(+id).appendChild(liElement);
@@ -32,10 +30,8 @@ console.log(bookTitles);
   });
 })();
 */
-
 // 1.4 objects containing information for each book -------------
 const bookList = {
-
   game_of_thrones: {
     title: 'Game Of Thrones',
     lang: 'English',
@@ -110,7 +106,6 @@ const bookList = {
 
 //console.log(bookList);
 // 1.5 functions add information of books ----------------
-
 
 (function booksDetails() {
   let ul = document.createElement('ul');
