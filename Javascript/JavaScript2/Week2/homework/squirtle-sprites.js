@@ -10,22 +10,19 @@ function fetchPokemonData() {
 }
 
 /* Code goes below */
+
 let obj = JSON.parse(fetchPokemonData());
-const array = Object.keys(obj.sprites);
-let links = [];
-
-/*
-for (let i = 0; i < array.length; i++) {
-  if (obj.sprites[array[i]] != null) {
-    links.push(obj.sprites[array[i]])
+const photosKeys = Object.keys(obj.sprites);
+const getPhotosLinks = photosKeys.map((id) => {
+  if (obj.sprites[id] != null) {
+    generateHtml(id, obj.sprites[id])
   }
-}
-*/
-
-const getLinks = array.map((id) => {
-  if (obj.sprites[id] != null)
-    links.push(obj.sprites[id])
 })
 
-
-console.log(links);
+function generateHtml(id, link) {
+  let imgElement = document.createElement('img');
+  imgElement.classList.add('spritePhotos');
+  imgElement.src = link;
+  imgElement.id = id;
+  document.body.append(imgElement);
+};
