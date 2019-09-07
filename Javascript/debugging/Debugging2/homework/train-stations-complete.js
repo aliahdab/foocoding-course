@@ -46,26 +46,6 @@ function longitude(coordinates) {
 function metersToKilometers(meters) {
   return meters / 1000;
 }
-/*
-function distanceInMeters(coord1, coord2) {
-  const earthRadiusInMeters = 6371000;
-
-  function radians(degrees) {
-    return (Math.PI / 180) * degrees;
-  }
-
-  const deltaLatitude = radians(latitude(coord2) - latitude(coord1));
-  const deltaLongitude = radians(longitude(coord2) - longitude(coord1));
-  const a = Math.sin(deltaLatitude / 2) * Math.sin(deltaLatitude / 2) +
-    Math.cos(radians(latitude(coord1))) *
-    Math.cos(radians(latitude(coord2))) *
-    Math.sin(deltaLongitude / 2) *
-    Math.sin(deltaLongitude / 2);
-  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-
-  return earthRadiusInMeters * c;
-}
-*/
 
 function distanceInMeters(coord1, coord2) {
   const earthRadiusInMeters = 6371000;
