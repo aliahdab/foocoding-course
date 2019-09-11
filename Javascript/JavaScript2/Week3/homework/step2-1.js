@@ -27,6 +27,7 @@ function foo(func) {
     return succeed[key].name;
   });
   func();
+  // eslint-disable-next-line no-console
   console.log(succeedStudent + '! ' + ' congrats you have passed the exam, Hurray !!!!!!!!!');
 }
 
