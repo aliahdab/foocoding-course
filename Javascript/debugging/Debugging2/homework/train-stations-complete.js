@@ -59,9 +59,9 @@ function distanceInMeters(coord1, coord2) {
   const a =
     Math.sin(deltaLatitude / 2) * Math.sin(deltaLatitude / 2) +
     Math.cos(radians(latitude(coord1))) *
-      Math.cos(radians(latitude(coord2))) *
-      Math.sin(deltaLongitude / 2) *
-      Math.sin(deltaLongitude / 2);
+    Math.cos(radians(latitude(coord2))) *
+    Math.sin(deltaLongitude / 2) *
+    Math.sin(deltaLongitude / 2);
   const c = Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)) * 2;
 
   return earthRadiusInMeters * c;
@@ -78,7 +78,8 @@ function isInRoute(route, city) {
 }
 
 function updateRoute(route, city) {
-  const newRoute = route.slice();
+  const newRoute = [...route];
+  //const newRoute = route;
   newRoute.push(city);
   return newRoute;
 }

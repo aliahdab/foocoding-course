@@ -1,12 +1,18 @@
+// Code goes here
+
 'use strict';
 
 function foo(func) {
-  // What to do here?
-  // Replace this comment and the next line with your code
-  console.log(func);
+  const students = ['student1', 'student2', 'student3'];
+  students.forEach(function(student) {
+    // eslint-disable-next-line no-console
+    console.log(student + '! ' + ' congrats you have passed the exam, let us celebrate');
+    func();
+  });
 }
 
 function bar() {
+  // eslint-disable-next-line no-console
   console.log('Hello, I am bar!');
 }
 
