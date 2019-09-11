@@ -7,7 +7,7 @@ function Dog() {
 const hound = new Dog();
 hound.name = 'max';
 hound.color = 'black';
-hound.numLeges = 6;
+hound.numLegs = 6;
 
 // Do not change or remove anything below this line
 module.exports = hound;

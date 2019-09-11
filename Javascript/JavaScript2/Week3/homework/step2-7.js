@@ -8,7 +8,6 @@ function f1(val) {
 
 f1(x);
 
-// eslint-disable-next-line no-console
 console.log(x);
 
 const y = { x: 9 };
@@ -19,7 +18,6 @@ function f2(val) {
 
 f2(y);
 
-// eslint-disable-next-line no-console
 console.log(y);
 
 // At the first the value of x does not change it still 9 because

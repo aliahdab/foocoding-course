@@ -12,17 +12,17 @@ function threeFive(startIndex, stopIndex, threeCallback, fiveCallback) {
     } else if (i % 5 === 0) {
       fiveCallback(i);
     }
+    console.log(startIndex, stopIndex, threeCallback, fiveCallback, numbers);
   }
 }
 
 function sayThree(number) {
-  // eslint-disable-next-line no-console
-  console.log(number + ' is divided by three');
+  console.log(number + ' divisible by 3');
 }
 
 function sayFive(number) {
-  // eslint-disable-next-line no-console
-  console.log(number + ' is divided by Five');
+  console.log(number + ' divisible by 5');
 }
 
 threeFive(10, 15, sayThree, sayFive);
+module.exports = threeFive;

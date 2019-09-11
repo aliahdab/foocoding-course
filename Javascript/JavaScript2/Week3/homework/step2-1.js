@@ -27,16 +27,13 @@ function foo(func) {
     return succeed[key].name;
   });
   func();
-  // eslint-disable-next-line no-console
   console.log(succeedStudent + '! ' + ' congrats you have passed the exam, Hurray !!!!!!!!!');
 }
 
 function bar() {
-  // eslint-disable-next-line no-console
   console.log('Hello, I am bar!');
 }
 
 foo(bar);
 
-// Do not change or remove anything below this line
 module.exports = foo;

@@ -3,11 +3,10 @@
 const values = ['a', 'b', 'c', 'd', 'a', 'e', 'f', 'c'];
 
 function makeUnique(arr) {
-  return new Set(arr);
+  return [...new Set(arr)];
 }
 
 const uniqueValues = makeUnique(values);
-// eslint-disable-next-line no-console
 console.log(uniqueValues);
 
 // Do not change or remove anything below this line
