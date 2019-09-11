@@ -8,6 +8,7 @@ function f1(val) {
 
 f1(x);
 
+// eslint-disable-next-line no-console
 console.log(x);
 
 const y = { x: 9 };
@@ -18,6 +19,10 @@ function f2(val) {
 
 f2(y);
 
+// eslint-disable-next-line no-console
 console.log(y);
 
 // Add your explanation as a comment here
+// in first the value of x does not change it still 9 because
+// it is a const and the function use a parameter name val which does not mean the are same
+//in the case two where y is passed to f2 function, the property x value of object y has changed.
