@@ -55,40 +55,18 @@
           const leftDiv = createAndAppend('div', container, { class: 'leftDiv' });
           const rightDiv = createAndAppend('div', container, { class: 'rightDiv' });
           generate_table(leftDiv, myArray, num);
-
+          generate_rightDiv(rightDiv, data, num);
           const paragraph = createAndAppend('p', rightDiv, {
             text: 'Contributions',
             class: 'Contributions-header',
           });
 
-          fetchJSON(myArray[num].contributors_url, (err, data) => {
-            console.log(myArray[num].contributors_url);
-            if (err) {
-              createAndAppend('div', rightDiv, {
-                text: err.message,
-                class: 'alert-error',
-              });
-            } else {
-              const uList = createAndAppend('ul', rightDiv, {
-                class: 'contributors_list',
-              });
-              myArray.forEach(element => {
-                const liElement = createAndAppend('li', uList, { class: 'li' });
-
-                createAndAppend('a', liElement, {
-                  id: 'a',
-                  text: element.login,
-                  href: element.html_url,
-                });
-                createAndAppend('img', liElement, { class: 'img', src: element.avatar_url });
-              });
-            }
-          });
-
           const selectEvent = select.addEventListener('change', () => {
             num = select.options[select.selectedIndex].index;
             leftDiv.innerHTML = '';
+            rightDiv.innerHTML = '';
             generate_table(leftDiv, myArray, num);
+            generate_rightDiv(rightDiv, data, num);
             console.log(myArray[num].contributors_url);
           });
         }
@@ -99,6 +77,32 @@
   const REPOS_URL = 'https://api.github.com/orgs/foocoding/repos?per_page=100';
 
   window.onload = () => main(REPOS_URL);
+
+  function generate_rightDiv(rightDiv, array, num) {
+    fetchJSON(array[num].contributors_url, (err, data) => {
+      const root = document.getElementById('root');
+      if (err) {
+        createAndAppend('div', root, {
+          text: err.message,
+          class: 'alert-error',
+        });
+      } else {
+        const uList = createAndAppend('ul', rightDiv, { class: 'ul' });
+        data.forEach(element => {
+          console.log(element);
+          const liList = createAndAppend('li', uList, { class: 'li' });
+          createAndAppend('a', liList, {
+            class: 'a',
+            text: element['login'],
+            href: element['html_url'],
+            target: '_blank',
+          });
+          console.log(element.avatar_url);
+          createAndAppend('img', liList, { class: 'img', src: element.avatar_url });
+        });
+      }
+    });
+  }
 
   function generate_table(container, anArray, num) {
     let tbl = document.createElement('table');
@@ -113,17 +117,17 @@
           case 0:
             switch (i) {
               case 0:
-                cellText = document.createTextNode('Repository :');
+                cellText = document.createTextNode('Repository:');
                 break;
               case 1:
-                cellText = document.createTextNode('Description :');
+                cellText = document.createTextNode('Description:');
                 break;
               case 2:
-                cellText = document.createTextNode('Forks :');
+                cellText = document.createTextNode('Forks:');
                 break;
 
               case 3:
-                cellText = document.createTextNode('Updated :');
+                cellText = document.createTextNode('Updated:');
                 break;
               default:
             }
