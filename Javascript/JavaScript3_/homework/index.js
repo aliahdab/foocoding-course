@@ -58,10 +58,11 @@
 
           const paragraph = createAndAppend('p', rightDiv, {
             text: 'Contributions',
-            className: 'Contributions-header',
+            class: 'Contributions-header',
           });
 
-          fetchJSON(data[num].contributors_url, (err, data) => {
+          fetchJSON(myArray[num].contributors_url, (err, data) => {
+            console.log(myArray[num].contributors_url);
             if (err) {
               createAndAppend('div', rightDiv, {
                 text: err.message,
@@ -70,6 +71,16 @@
             } else {
               const uList = createAndAppend('ul', rightDiv, {
                 class: 'contributors_list',
+              });
+              myArray.forEach(element => {
+                const liElement = createAndAppend('li', uList, { class: 'li' });
+
+                createAndAppend('a', liElement, {
+                  id: 'a',
+                  text: element.login,
+                  href: element.html_url,
+                });
+                createAndAppend('img', liElement, { class: 'img', src: element.avatar_url });
               });
             }
           });
