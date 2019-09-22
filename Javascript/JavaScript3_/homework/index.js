@@ -34,7 +34,9 @@
   function main(url) {
     fetchJSON(url, (err, data) => {
       const root = document.getElementById('root');
-      const header = createAndAppend('header', root, { class: 'header' });
+      const header = createAndAppend('header', root, {
+        class: 'header'
+      });
       if (err) {
         createAndAppend('div', root, {
           text: err.message,
@@ -43,8 +45,12 @@
       } else {
         {
           let num = 0;
-          const container = createAndAppend('div', root, { class: 'container' });
-          const select = createAndAppend('select', header, { class: 'select' });
+          const container = createAndAppend('div', root, {
+            class: 'container'
+          });
+          const select = createAndAppend('select', header, {
+            class: 'select'
+          });
           let myArray = customizingTheArray(data);
 
           myArray.forEach(element => {
@@ -52,14 +58,14 @@
               text: element['full_name'],
             });
           });
-          const leftDiv = createAndAppend('div', container, { class: 'leftDiv' });
-          const rightDiv = createAndAppend('div', container, { class: 'rightDiv' });
+          const leftDiv = createAndAppend('div', container, {
+            class: 'leftDiv'
+          });
+          const rightDiv = createAndAppend('div', container, {
+            class: 'rightDiv'
+          });
           generate_table(leftDiv, myArray, num);
           generate_rightDiv(rightDiv, data, num);
-          const paragraph = createAndAppend('p', rightDiv, {
-            text: 'Contributions',
-            class: 'Contributions-header',
-          });
 
           const selectEvent = select.addEventListener('change', () => {
             num = select.options[select.selectedIndex].index;
@@ -79,6 +85,11 @@
   window.onload = () => main(REPOS_URL);
 
   function generate_rightDiv(rightDiv, array, num) {
+    const paragraph = createAndAppend('p', rightDiv, {
+      text: 'Contributions',
+      class: 'Contributions-header',
+    });
+
     fetchJSON(array[num].contributors_url, (err, data) => {
       const root = document.getElementById('root');
       if (err) {
@@ -87,10 +98,14 @@
           class: 'alert-error',
         });
       } else {
-        const uList = createAndAppend('ul', rightDiv, { class: 'ul' });
+        const uList = createAndAppend('ul', rightDiv, {
+          class: 'ul'
+        });
         data.forEach(element => {
           console.log(element);
-          const liList = createAndAppend('li', uList, { class: 'li' });
+          const liList = createAndAppend('li', uList, {
+            class: 'li'
+          });
           createAndAppend('a', liList, {
             class: 'a',
             text: element['login'],
@@ -98,7 +113,10 @@
             target: '_blank',
           });
           console.log(element.avatar_url);
-          createAndAppend('img', liList, { class: 'img', src: element.avatar_url });
+          createAndAppend('img', liList, {
+            class: 'img',
+            src: element.avatar_url
+          });
         });
       }
     });
