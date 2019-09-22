@@ -35,7 +35,7 @@
     fetchJSON(url, (err, data) => {
       const root = document.getElementById('root');
       const header = createAndAppend('header', root, {
-        class: 'header'
+        class: 'header',
       });
       if (err) {
         createAndAppend('div', root, {
@@ -46,10 +46,10 @@
         {
           let num = 0;
           const container = createAndAppend('div', root, {
-            class: 'container'
+            class: 'container',
           });
           const select = createAndAppend('select', header, {
-            class: 'select'
+            class: 'select',
           });
           let myArray = customizingTheArray(data);
 
@@ -59,10 +59,10 @@
             });
           });
           const leftDiv = createAndAppend('div', container, {
-            class: 'leftDiv'
+            class: 'leftDiv',
           });
           const rightDiv = createAndAppend('div', container, {
-            class: 'rightDiv'
+            class: 'rightDiv',
           });
           generate_table(leftDiv, myArray, num);
           generate_rightDiv(rightDiv, data, num);
@@ -73,24 +73,11 @@
             rightDiv.innerHTML = '';
             generate_table(leftDiv, myArray, num);
             generate_rightDiv(rightDiv, data, num);
-            //  console.log(myArray[num].contributors_url);
-            console.log(doSort(data), 'Chau')
           });
         }
       }
     });
   }
-
-  const doSort = data => {
-    let da = [];
-    for (let i = 0; i < data.length; i++) {
-      da.push(data[i].name);
-      //console.log(da);
-      //da.sort((a, b) => a > b);
-    }
-    return da;
-  };
-
 
   const REPOS_URL = 'https://api.github.com/orgs/foocoding/repos?per_page=100';
 
@@ -111,12 +98,12 @@
         });
       } else {
         const uList = createAndAppend('ul', rightDiv, {
-          class: 'ul'
+          class: 'ul',
         });
         data.forEach(element => {
           //console.log(element);
           const liList = createAndAppend('li', uList, {
-            class: 'li'
+            class: 'li',
           });
           createAndAppend('a', liList, {
             class: 'a',
@@ -127,7 +114,7 @@
           // console.log(element.avatar_url);
           createAndAppend('img', liList, {
             class: 'img',
-            src: element.avatar_url
+            src: element.avatar_url,
           });
         });
       }
