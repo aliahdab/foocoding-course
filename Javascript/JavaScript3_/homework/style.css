@@ -80,11 +80,98 @@ html {
   margin: 0.7em;
   display: inline-block;
   width: 17%;
-
 }
 
 .img {
   padding: 0.5em;
   width: 75px;
+}
 
+
+@media screen and (max-width:768px){
+  .header{
+    margin-left:5%;
+    width:100%;
+  }
+  .select{
+    height:70%;
+    width:50%;
+  }
+  .container{
+    margin:1%;
+    width:100%;
+    display: flex;
+    flex-direction: column;
+  }
+  .leftDiv{
+    margin:3%;
+    width:90%;
+    height:2%;
+  }
+  .Contributions-header {
+  font-size: 120%;
+  font-family: arial;
+  margin-top: 20%;
+  margin-left: 40%;
+  }
+
+  .rightDiv{
+    width:100%;
+    }
+}
+
+
+@media screen and (max-width:390px){
+  .header{
+    margin-left:1%;
+    width:96%;
+  }
+  .select{
+    height:70%;
+    width:50%;
+  }
+  .container{
+    margin:1%;
+    width:60%;
+    display: flex;
+    flex-direction: column;
+  }
+  .leftDiv{
+    margin:5%;
+    width:90%;
+    height:2%;
+  font-size: 100%;
+}
+  .Contributions-header {
+  font-size: 100%;
+  font-family: arial;
+  margin-top:100%;
+  margin-left: 40%;
+  }
+
+  .rightDiv{
+    width:100%;
+ 
+  }
+.img {
+  padding: 10%;
+  margin:60%;
+  width: 200%;
+}
+  
+#ul {
+
+  column-count: 4;
+  column-gap: 10%;
+}
+
+.li {
+  padding: 6%;
+  font-size:48%;
+  margin:11%;
+  text-align: center;
+  display: inline-block;
+  width: 15%;
+}
+  
 }
