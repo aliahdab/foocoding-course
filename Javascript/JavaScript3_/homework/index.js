@@ -189,11 +189,11 @@
     let myArray = [];
     anArray.map(item => {
       item.full_name = item.full_name.slice(10);
-      item.full_name = capitalizeFirstLetter(item.full_name);
+      item.full_name = capitalizeFirstLetter(item.name);
       myArray.push(item);
     });
 
-    myArray.sort((a, b) => a.full_name.localeCompare(b.full_name));
+    myArray.sort((a, b) => a.name.localeCompare(b.name));
 
     return myArray;
   }
