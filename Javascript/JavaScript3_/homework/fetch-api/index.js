@@ -13,15 +13,36 @@ const getData = () => {
 }
 getData();
 */
-const getData = async () => {
+const getData = async (url) => {
   try {
-    let res = await fetch('https://api.github.com/orgs/foocoding/repos?per_page=100')
+    let res = await fetch(url)
     let data = await res.json();
-    console.log(data);
+    // console.log(data);
     return data
   } catch (err) {
     console.log(err)
   }
+}
+const generateContributions = async (element) => {
+  const anArray = await getData(element.contributors_url);
+  anArray.forEach((ele) => {
+
+    const paragraph = document.createElement('p');
+    paragraph.setAttribute('id', 'rightDiv');
+    const uList = document.createElement('ul');
+    uList.setAttribute('id', 'ul');
+    const liList = document.createElement('li');
+    uList.setAttribute('id', 'li');
+    uList.append(liList);
+    const a = document.createElement('a');
+    a.setAttribute('url', ele['html_url']);
+    a.setAttribute('text', ele.name);
+    liList.append(a);
+    const img = document.createElement('img');
+    img.setAttribute('src', ele.avatar_url);
+    liList.append(img)
+    paragraph.append(uList);
+  })
 }
 
 const generateDepoDetails = (element) => {
@@ -43,9 +64,10 @@ const generateDepoDetails = (element) => {
 }
 
 const generateDepoList = async () => {
-  const ayArray = await getData();
-  const myArray = customizingTheArray(ayArray);
+  const aArray = await getData('https://api.github.com/orgs/foocoding/repos?per_page=100');
+  const myArray = customizingTheArray(aArray);
   const root = document.getElementById('root');
+  const rightDiv = document.createElement('div');
   const uList = document.createElement('ul');
   const details = document.createElement('div');
 
@@ -70,12 +92,7 @@ const generateDepoList = async () => {
   });
 }
 
-
 generateDepoList();
-
-const generateDetailsField = () => {
-
-}
 
 
 
