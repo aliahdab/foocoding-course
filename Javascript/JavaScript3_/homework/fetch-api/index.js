@@ -1,32 +1,20 @@
 'use strict'
 
-/*
-// Fetching data way number 1;
-const getData = () => {
-  try {
-    fetch('https://api.github.com/orgs/foocoding/repos?per_page=100')
-      .then((res) => res.json())
-      .then((data) => console.log(data))
-  } catch (error) {
-    console.log(error)
-  }
-}
-getData();
-*/
 const getData = async (url) => {
   try {
     let res = await fetch(url)
     let data = await res.json();
-    // console.log(data);
+    //console.log(data);
     return data
   } catch (err) {
     console.log(err)
   }
 }
+
 const generateContributions = async (element) => {
   const anArray = await getData(element.contributors_url);
+  const rightDiv = document.createElement('div');
   anArray.forEach((ele) => {
-
     const paragraph = document.createElement('p');
     paragraph.setAttribute('id', 'rightDiv');
     const uList = document.createElement('ul');
@@ -36,13 +24,15 @@ const generateContributions = async (element) => {
     uList.append(liList);
     const a = document.createElement('a');
     a.setAttribute('url', ele['html_url']);
-    a.setAttribute('text', ele.name);
+    a.setAttribute('text', ele.login);
     liList.append(a);
     const img = document.createElement('img');
     img.setAttribute('src', ele.avatar_url);
     liList.append(img)
     paragraph.append(uList);
+    rightDiv.append(paragraph)
   })
+  return rightDiv
 }
 
 const generateDepoDetails = (element) => {
@@ -67,10 +57,9 @@ const generateDepoList = async () => {
   const aArray = await getData('https://api.github.com/orgs/foocoding/repos?per_page=100');
   const myArray = customizingTheArray(aArray);
   const root = document.getElementById('root');
-  const rightDiv = document.createElement('div');
+  let rightDiv = document.createElement('div');
   const uList = document.createElement('ul');
   const details = document.createElement('div');
-
 
   let str;
   uList.setAttribute('id', 'mainList');
@@ -84,18 +73,18 @@ const generateDepoList = async () => {
     uList.appendChild(liList)
     root.appendChild(uList);
 
-    btn.addEventListener('click', () => {
+    btn.addEventListener('click', async () => {
       details.innerHTML = '';
+      rightDiv.innerHTML = '';
       details.appendChild(generateDepoDetails(element));
       root.append(details);
+      rightDiv = await generateContributions(element);
+      root.append(rightDiv);
     });
   });
 }
 
 generateDepoList();
-
-
-
 
 const customizingTheArray = (anArray) => {
   let myArray = [];
