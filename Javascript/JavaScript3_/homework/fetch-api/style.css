@@ -15,14 +15,12 @@ html {
   align-items: center;
 }
 
-.
 #leftDiv {
   font-size: 1.1em;
   margin-top: 1%;
-  width: 20%;
+  min-width: 25%;
   height: 50%;
   background-color: rgb(201, 224, 253);
-  text-align: center;
   display: block;
 }
 #rightDiv {
@@ -54,10 +52,9 @@ p {
   column-gap: 1em;
 }
 
-.li {
+#li {
   text-align: center;
-  padding: 0.5em;
-  margin: 0.7em;
+  margin: 2em;
   display: inline-block;
   width: 17%;
 }

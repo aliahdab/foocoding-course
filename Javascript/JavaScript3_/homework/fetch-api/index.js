@@ -7,7 +7,7 @@ const getData = async (url) => {
     //console.log(data);
     return data
   } catch (err) {
-    console.log(err)
+    alert(err)
   }
 }
 
@@ -39,7 +39,7 @@ const generateContributions = async (element) => {
   return paragraph
 }
 
-const generateDepoDetails = (element) => {
+const generateRepoDetails = (element) => {
   const uList = document.createElement('ul');
   uList.setAttribute('id', `ulList${element.name}`);
   const liList1 = document.createElement('li');
@@ -57,7 +57,7 @@ const generateDepoDetails = (element) => {
   return uList;
 }
 
-const generateDepoList = async () => {
+const generateRepoList = async () => {
   const aArray = await getData('https://api.github.com/orgs/foocoding/repos?per_page=100');
   const myArray = customizingTheArray(aArray);
   const root = document.getElementById('root');
@@ -82,7 +82,7 @@ const generateDepoList = async () => {
     btn.addEventListener('click', async () => {
       details.remove();
       rightDiv.remove();
-      details = generateDepoDetails(element);
+      details = await generateRepoDetails(element);
       rightDiv = await generateContributions(element);
       root.append(details);
       root.append(rightDiv);
@@ -91,12 +91,11 @@ const generateDepoList = async () => {
   root.append(leftDiv)
 }
 
-generateDepoList();
 const customizingTheArray = (anArray) => {
   let myArray = [];
   anArray.map(item => {
-    item.full_name = item.full_name.slice(10);
-    item.full_name = capitalizeFirstLetter(item.name);
+
+    item.name = capitalizeFirstLetter(item.name);
     myArray.push(item);
   });
 
@@ -108,3 +107,5 @@ const customizingTheArray = (anArray) => {
 const capitalizeFirstLetter = (string) => {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
+
+generateRepoList();
