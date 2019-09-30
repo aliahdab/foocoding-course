@@ -18,7 +18,6 @@ const generateContributions = async (element) => {
   const paragraph = document.createElement('p');
   paragraph.setAttribute('id', 'paragraph');
   anArray.forEach((ele) => {
-
     const uList = document.createElement('ul');
     uList.setAttribute('id', 'ul');
     const liList = document.createElement('li');
@@ -34,14 +33,13 @@ const generateContributions = async (element) => {
 
     liList.append(img)
     paragraph.append(uList);
-
   })
   return paragraph
 }
 
 const generateRepoDetails = (element) => {
   const uList = document.createElement('ul');
-  uList.setAttribute('id', `ulList${element.name}`);
+  uList.setAttribute('id', 'mlist');
   const liList1 = document.createElement('li');
   liList1.appendChild(document.createTextNode(`Repository : ${element.name}`))
   uList.appendChild(liList1)
@@ -60,16 +58,16 @@ const generateRepoDetails = (element) => {
 const generateRepoList = async () => {
   const aArray = await getData('https://api.github.com/orgs/foocoding/repos?per_page=100');
   const myArray = customizingTheArray(aArray);
+  console.log(myArray);
   const root = document.getElementById('root');
   let leftDiv = document.createElement('div');
   leftDiv.setAttribute('id', 'leftDiv');
-  let rightDiv = document.createElement('div');
-  rightDiv.setAttribute('id', 'rightDiv2');
+
   const uList = document.createElement('ul');
-  let details = document.createElement('div');
-  details.setAttribute('id', 'details');
+
   let str;
   uList.setAttribute('id', 'mainList');
+
   myArray.forEach(element => {
     const liList = document.createElement('li');
     str = capitalizeFirstLetter(`${element.name}`);
@@ -79,16 +77,29 @@ const generateRepoList = async () => {
     btn.setAttribute('id', str);
     uList.appendChild(liList)
     leftDiv.appendChild(uList);
-    btn.addEventListener('click', async () => {
-      details.remove();
-      rightDiv.remove();
-      details = await generateRepoDetails(element);
-      rightDiv = await generateContributions(element);
-      root.append(details);
-      root.append(rightDiv);
-    });
-  });
-  root.append(leftDiv)
+    btn.addEventListener('click', eventClicker);
+    root.append(leftDiv)
+  })
+  eventClicker(myArray[3]);
+}
+
+const eventClicker = async (element) => {
+  const root = document.getElementById('root');
+  if (typeof details === "undefined") {
+    var details = document.createElement('div');
+    details.setAttribute('id', 'details');
+    var rightDiv = document.createElement('div');
+    rightDiv.setAttribute('id', 'rightDiv2');
+  } else {
+    details.remove();
+    rightDiv.remove();
+    console.log('remove details')
+  }
+  console.log(details);
+  details = await generateRepoDetails(element);
+  rightDiv = await generateContributions(element);
+  root.append(details);
+  root.append(rightDiv);
 }
 
 const customizingTheArray = (anArray) => {
