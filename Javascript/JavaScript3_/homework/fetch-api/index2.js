@@ -18,20 +18,19 @@ const generateContributions = async (element) => {
   const paragraph = document.createElement('p');
   paragraph.setAttribute('id', 'paragraph');
   anArray.forEach((ele) => {
-
     const uList = document.createElement('ul');
     uList.setAttribute('id', 'ul');
     const liList = document.createElement('li');
     uList.setAttribute('id', 'li');
     uList.append(liList);
     const a = document.createElement('a');
-    a.href = ele['html_url'];
-    a.textContent = ele.login
+    a.setAttribute('url', ele['html_url']);
+    a.setAttribute('text', ele.login);
     liList.append(a);
     const img = document.createElement('img');
     img.setAttribute('src', ele.avatar_url);
-    img.setAttribute('alt', 'Repo Image');
-    //  a.appendChild(img);
+    img.setAttribute('id', 'ul');
+
     liList.append(img)
     paragraph.append(uList);
 
@@ -63,23 +62,11 @@ const generateRepoList = async () => {
   const root = document.getElementById('root');
   let leftDiv = document.createElement('div');
   leftDiv.setAttribute('id', 'leftDiv');
-  let rightDiv = document.createElement('div');
-  rightDiv.setAttribute('id', 'rightDiv2');
+
   const uList = document.createElement('ul');
-  let details = document.createElement('div');
-  details.setAttribute('id', 'details');
+
   let str;
   uList.setAttribute('id', 'mainList');
-  const firstButton = async (element) => {
-    details.remove();
-    rightDiv.remove();
-    details = await generateRepoDetails(element);
-    rightDiv = await generateContributions(element);
-    root.append(details);
-    root.append(rightDiv);
-
-  }
-  firstButton(myArray[0]);
 
   myArray.forEach(element => {
     const liList = document.createElement('li');
@@ -90,25 +77,39 @@ const generateRepoList = async () => {
     btn.setAttribute('id', str);
     uList.appendChild(liList)
     leftDiv.appendChild(uList);
-    btn.addEventListener('click', async (element) => {
-      details.remove();
-      rightDiv.remove();
-      details = await generateRepoDetails(element);
-      rightDiv = await generateContributions(element);
-      root.append(details);
-      root.append(rightDiv);
-    });
+    btn.addEventListener('click', eventClicker);
     root.append(leftDiv)
   })
+  eventClicker(myArray[0]);
+}
+
+const eventClicker = async (element) => {
+  const root = document.getElementById('root');
+  if (typeof details === "undefined") {
+    var details = document.createElement('div');
+    details.setAttribute('id', 'details');
+    var rightDiv = document.createElement('div');
+    rightDiv.setAttribute('id', 'rightDiv2');
+  } else {
+    details.remove();
+    rightDiv.remove();
+  }
+  details = await generateRepoDetails(element);
+  rightDiv = await generateContributions(element);
+  root.append(details);
+  root.append(rightDiv);
 }
 
 const customizingTheArray = (anArray) => {
   let myArray = [];
   anArray.map(item => {
+
     item.name = capitalizeFirstLetter(item.name);
     myArray.push(item);
   });
+
   myArray.sort((a, b) => a.name.localeCompare(b.name));
+
   return myArray;
 }
 
