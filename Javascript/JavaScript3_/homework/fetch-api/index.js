@@ -39,15 +39,19 @@ const generateDepoDetails = (element) => {
   const uList = document.createElement('ul');
   uList.setAttribute('id', `ulList${element.name}`);
   const liList1 = document.createElement('li');
+  liList1.setAttribute('id', 'detailsList');
   liList1.appendChild(document.createTextNode(`Repository : ${element.name}`))
-  uList.appendChild(liList1)
+  uList.appendChild(liList1);
   const liList2 = document.createElement('li');
+  liList2.setAttribute('id', 'detailsList');
   liList2.appendChild(document.createTextNode(`Descriptions: ${element.description}`))
   uList.appendChild(liList2)
   const liList3 = document.createElement('li');
+  liList3.setAttribute('id', 'detailsList');
   liList3.appendChild(document.createTextNode(`Forks : ${element.forks}`))
   uList.appendChild(liList3)
   const liList4 = document.createElement('li');
+  liList4.setAttribute('id', 'detailsList');
   liList4.appendChild(document.createTextNode(`Updated : ${element.updated_at}`))
   uList.appendChild(liList4)
   return uList;
@@ -65,6 +69,8 @@ const generateDepoList = async () => {
   uList.setAttribute('id', 'mainList');
   myArray.forEach(element => {
     const liList = document.createElement('li');
+    liList.setAttribute('id', 'btnList');
+
     str = capitalizeFirstLetter(`${element.name}`);
     const btn = document.createElement('button');
     liList.appendChild(btn);
