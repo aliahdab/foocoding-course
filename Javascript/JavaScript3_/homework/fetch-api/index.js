@@ -15,24 +15,28 @@ const generateContributions = async (element) => {
   const anArray = await getData(element.contributors_url);
   const rightDiv = document.createElement('div');
   rightDiv.setAttribute('id', 'rightDiv');
+  const paragraph = document.createElement('p');
+  paragraph.setAttribute('id', 'paragraph');
   anArray.forEach((ele) => {
-    const paragraph = document.createElement('p');
+
     const uList = document.createElement('ul');
     uList.setAttribute('id', 'ul');
     const liList = document.createElement('li');
     uList.setAttribute('id', 'li');
     uList.append(liList);
     const a = document.createElement('a');
-    a.setAttribute('url', ele['html_url']);
-    a.setAttribute('text', ele.login);
+    a.href = ele['html_url'];
+    a.textContent = ele.login
     liList.append(a);
     const img = document.createElement('img');
     img.setAttribute('src', ele.avatar_url);
+    img.setAttribute('alt', 'Repo Image');
+    //  a.appendChild(img);
     liList.append(img)
     paragraph.append(uList);
-    rightDiv.append(paragraph)
+
   })
-  return rightDiv
+  return paragraph
 }
 
 const generateDepoDetails = (element) => {
