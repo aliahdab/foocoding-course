@@ -25,7 +25,8 @@ const generateContributions = async (element) => {
     const a = document.createElement('a');
     a.href = ele['html_url'];
     a.textContent = ele.login
-    liList.append(a);
+    a.target = '_blank',
+      liList.append(a);
     const img = document.createElement('img');
     img.setAttribute('src', ele.avatar_url);
     img.setAttribute('alt', 'Repo Image');
