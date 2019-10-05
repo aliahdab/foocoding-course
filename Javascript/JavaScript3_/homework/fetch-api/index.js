@@ -14,9 +14,9 @@ const getData = async (url) => {
 const generateContributions = async (element) => {
   const anArray = await getData(element.contributors_url);
   const rightDiv = document.createElement('div');
+  rightDiv.setAttribute('id', 'rightDiv');
   anArray.forEach((ele) => {
     const paragraph = document.createElement('p');
-    paragraph.setAttribute('id', 'rightDiv');
     const uList = document.createElement('ul');
     uList.setAttribute('id', 'ul');
     const liList = document.createElement('li');
@@ -66,7 +66,7 @@ const generateDepoList = async () => {
   let details = document.createElement('div');
 
   let str;
-  uList.setAttribute('id', 'mainList');
+  uList.setAttribute('id', 'mList');
   myArray.forEach(element => {
     const liList = document.createElement('li');
     liList.setAttribute('id', 'btnList');
