@@ -35,24 +35,25 @@ const generateContributions = async element => {
   return paragraph;
 };
 
-const generateRepoDetails = element => {
+const generateRepoDetails = el => {
   const uList = document.createElement('ul');
   uList.setAttribute('id', 'mlist');
   const liList1 = document.createElement('li');
   liList1.setAttribute('id', 'liList');
-  liList1.appendChild(document.createTextNode(`Repository : ${element.name}`));
+  liList1.appendChild(document.createTextNode(`Repository : ${el.name}`));
+  // console.log(el);
   uList.appendChild(liList1);
   const liList2 = document.createElement('li');
   liList2.setAttribute('id', 'liList');
-  liList2.appendChild(document.createTextNode(`Descriptions: ${element.description}`));
+  liList2.appendChild(document.createTextNode(`Descriptions: ${el.description}`));
   uList.appendChild(liList2);
   const liList3 = document.createElement('li');
   liList3.setAttribute('id', 'liList');
-  liList3.appendChild(document.createTextNode(`Forks : ${element.forks}`));
+  liList3.appendChild(document.createTextNode(`Forks : ${el.forks}`));
   uList.appendChild(liList3);
   const liList4 = document.createElement('li');
   liList4.setAttribute('id', 'liList');
-  liList4.appendChild(document.createTextNode(`Updated : ${element.updated_at}`));
+  liList4.appendChild(document.createTextNode(`Updated : ${el.updated_at}`));
   uList.appendChild(liList4);
   return uList;
 };
@@ -84,7 +85,7 @@ const generateRepoList = async () => {
       details.remove();
       rightDiv.remove();
       details = await generateRepoDetails(element);
-      //rightDiv = await generateContributions(element);
+      rightDiv = await generateContributions(element);
       root.append(details);
       root.append(rightDiv);
     });
