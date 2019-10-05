@@ -4,7 +4,7 @@
 
 body,
 html {
-  margin-top: 3%;
+  margin-top: 1%;
   width: 95%;
   height: 95%;
 }
@@ -16,7 +16,7 @@ html {
 }
 
 #rightDiv {
-  margin-top: -1%;
+  margin-top: 1%;
   min-width: 50%;
   min-height: 70%;
    min-height: 60%;
