@@ -13,10 +13,8 @@ const getData = async (url) => {
 
 const generateContributions = async (element) => {
   const anArray = await getData(element.contributors_url);
-  const rightDiv = document.createElement('div');
+  const rightDiv = document.createElement('p');
   rightDiv.setAttribute('id', 'rightDiv');
-  const paragraph = document.createElement('p');
-  paragraph.setAttribute('id', 'paragraph');
   anArray.forEach((ele) => {
 
     const uList = document.createElement('ul');
@@ -33,10 +31,9 @@ const generateContributions = async (element) => {
     img.setAttribute('alt', 'Repo Image');
     //  a.appendChild(img);
     liList.append(img)
-    paragraph.append(uList);
-
+    rightDiv.append(uList);
   })
-  return paragraph
+  return rightDiv;
 }
 
 const generateDepoDetails = (element) => {
