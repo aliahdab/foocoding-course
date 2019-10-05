@@ -1,110 +1,108 @@
-'use strict';
+'use strict'
 
-const getData = async url => {
+const getData = async (url) => {
   try {
-    let res = await fetch(url);
+    let res = await fetch(url)
     let data = await res.json();
-    return data;
+    //console.log(data);
+    return data
   } catch (err) {
-    alert(err);
+    console.log(err)
   }
-};
+}
 
-const generateContributions = async element => {
+const generateContributions = async (element) => {
   const anArray = await getData(element.contributors_url);
   const rightDiv = document.createElement('div');
-  rightDiv.setAttribute('id', 'rightDiv');
-  const paragraph = document.createElement('p');
-  paragraph.setAttribute('id', 'paragraph');
-  anArray.forEach(ele => {
+  anArray.forEach((ele) => {
+    const paragraph = document.createElement('p');
+    paragraph.setAttribute('id', 'rightDiv');
     const uList = document.createElement('ul');
     uList.setAttribute('id', 'ul');
     const liList = document.createElement('li');
     uList.setAttribute('id', 'li');
     uList.append(liList);
     const a = document.createElement('a');
-    a.href = ele['html_url'];
-    a.textContent = ele.login;
-    (a.target = '_blank'), liList.append(a);
+    a.setAttribute('url', ele['html_url']);
+    a.setAttribute('text', ele.login);
+    liList.append(a);
     const img = document.createElement('img');
     img.setAttribute('src', ele.avatar_url);
-    img.setAttribute('alt', 'Repo Image');
-    liList.append(img);
+    liList.append(img)
     paragraph.append(uList);
-  });
-  return paragraph;
-};
+    rightDiv.append(paragraph)
+  })
+  return rightDiv
+}
 
-const generateRepoDetails = el => {
+const generateDepoDetails = (element) => {
   const uList = document.createElement('ul');
-  uList.setAttribute('id', 'mlist');
+  uList.setAttribute('id', `ulList${element.name}`);
   const liList1 = document.createElement('li');
-  liList1.setAttribute('id', 'liList');
-  liList1.appendChild(document.createTextNode(`Repository : ${el.name}`));
-  // console.log(el);
-  uList.appendChild(liList1);
+  liList1.appendChild(document.createTextNode(`Repository : ${element.name}`))
+  uList.appendChild(liList1)
   const liList2 = document.createElement('li');
-  liList2.setAttribute('id', 'liList');
-  liList2.appendChild(document.createTextNode(`Descriptions: ${el.description}`));
-  uList.appendChild(liList2);
+  liList2.appendChild(document.createTextNode(`Descriptions: ${element.description}`))
+  uList.appendChild(liList2)
   const liList3 = document.createElement('li');
-  liList3.setAttribute('id', 'liList');
-  liList3.appendChild(document.createTextNode(`Forks : ${el.forks}`));
-  uList.appendChild(liList3);
+  liList3.appendChild(document.createTextNode(`Forks : ${element.forks}`))
+  uList.appendChild(liList3)
   const liList4 = document.createElement('li');
-  liList4.setAttribute('id', 'liList');
-  liList4.appendChild(document.createTextNode(`Updated : ${el.updated_at}`));
-  uList.appendChild(liList4);
+  liList4.appendChild(document.createTextNode(`Updated : ${element.updated_at}`))
+  uList.appendChild(liList4)
   return uList;
-};
+}
 
-const generateRepoList = async () => {
+const generateDepoList = async () => {
   const aArray = await getData('https://api.github.com/orgs/foocoding/repos?per_page=100');
   const myArray = customizingTheArray(aArray);
   const root = document.getElementById('root');
-  let leftDiv = document.createElement('div');
-  leftDiv.setAttribute('id', 'leftDiv');
   let rightDiv = document.createElement('div');
-  rightDiv.setAttribute('id', 'rightDiv2');
   const uList = document.createElement('ul');
   let details = document.createElement('div');
-  details.setAttribute('id', 'details');
+
   let str;
   uList.setAttribute('id', 'mainList');
-
   myArray.forEach(element => {
     const liList = document.createElement('li');
     str = capitalizeFirstLetter(`${element.name}`);
     const btn = document.createElement('button');
     liList.appendChild(btn);
-    btn.appendChild(document.createTextNode(str));
+    btn.appendChild(document.createTextNode(str))
     btn.setAttribute('id', str);
-    uList.appendChild(liList);
-    leftDiv.appendChild(uList);
-    btn.addEventListener('click', async element => {
-      details.remove();
+    uList.appendChild(liList)
+    root.appendChild(uList);
+
+    btn.addEventListener('click', async () => {
       rightDiv.remove();
-      details = await generateRepoDetails(element);
-      rightDiv = await generateContributions(element);
+      details.remove();
+      details = generateDepoDetails(element);
       root.append(details);
+      rightDiv = await generateContributions(element);
       root.append(rightDiv);
     });
-    root.append(leftDiv);
   });
-};
+  details = generateDepoDetails(myArray[0]);
+  root.append(details);
+  rightDiv = await generateContributions(myArray[0]);
+  root.append(rightDiv);
+}
 
-const customizingTheArray = anArray => {
+generateDepoList();
+
+const customizingTheArray = (anArray) => {
   let myArray = [];
   anArray.map(item => {
-    item.name = capitalizeFirstLetter(item.name);
+    item.full_name = item.full_name.slice(10);
+    item.full_name = capitalizeFirstLetter(item.name);
     myArray.push(item);
   });
+
   myArray.sort((a, b) => a.name.localeCompare(b.name));
+
   return myArray;
-};
+}
 
-const capitalizeFirstLetter = string => {
+const capitalizeFirstLetter = (string) => {
   return string.charAt(0).toUpperCase() + string.slice(1);
-};
-
-generateRepoList();
+}
