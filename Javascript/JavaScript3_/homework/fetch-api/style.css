@@ -46,7 +46,8 @@ html {
 }
 
 p {
-  font-size: 25%;
+  padding: 4%;
+  font-size: 26%;
   font-family: arial;
   margin-top: 10%;
   margin-left: 1%;
