@@ -10,20 +10,20 @@ function createServer(port) {
 
   const server = http.createServer((request, response) => {
     // TODO: Write your homework code here
-    if (request.url == '/state') {
+    if (request.url === '/state') {
       response.writeHead(200, { 'Content-Type': 'application/json' });
       response.end(JSON.stringify({ state: state }));
-    } else if (request.url == '/add') {
+    } else if (request.url === '/add') {
       state++;
       response.writeHead(200, { 'Content-Type': 'application/json' });
       response.end(JSON.stringify({ state: state }));
     }
-    else if (request.url == '/subtract') {
+    else if (request.url === '/subtract') {
       state--;
       response.writeHead(200, { 'Content-Type': 'application/json' });
       response.end(JSON.stringify({ state: state }));
     }
-    else if (request.url == '/reset') {
+    else if (request.url === '/reset') {
       state = 10;
       response.writeHead(200, { 'Content-Type': 'application/json' });
       response.end(JSON.stringify({ state: state }));
